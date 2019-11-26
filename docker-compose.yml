@@ -1,0 +1,22 @@
+version: '3.7'
+services:
+    nginx:
+        build:
+            context: ./docker/nginx
+        volumes:
+            - ./app:/var/www/app
+            - ./docker/logs/nginx:/var/log/nginx
+        depends_on:
+            - php-fpm
+        ports:
+            - "80:80"
+    php-fpm:
+        build:
+            context: ./docker/php
+        volumes:
+            - ./app:/var/www/app
+            - composer:/root/.composer/cache
+        environment:
+            PHP_IDE_CONFIG: "serverName=Docker"
+volumes:
+    composer:
