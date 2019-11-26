@@ -13,7 +13,6 @@ use Psr\Http\Message\ResponseInterface;
  */
 class HelloWorld
 {
-
     /**
      * @var ResponseInterface
      */

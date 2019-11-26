@@ -1,0 +1,73 @@
+swagger: "2.0"
+info:
+  title: Product API
+  description: API description in Markdown.
+  version: 1.0.0
+host: api.localhost
+schemes:
+  - "https"
+  - "http"
+paths:
+  /products{id}:
+    get:
+      tags:
+        - "product"
+      summary: Get a product by ID
+      operationId: "getProductById"
+      responses:
+        200:
+          description: A Product object
+          schema:
+            $ref: "#/definitions/Product"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Product not found"
+      parameters:
+        - in: body
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the product
+
+    delete:
+      tags:
+        - "product"
+      summary: "Deletes a product"
+      description: ""
+      operationId: "deleteProduct"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "Product ID to delete"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        204:
+          description: "Product is deleted"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Product not found"
+
+definitions:
+  Product:
+    type: "object"
+    required:
+      - "name"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+        example: "Map"
+      price:
+        type: "integer"
+        format: "int64"
+    xml:
+      name: "Product"

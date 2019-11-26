@@ -1,6 +1,11 @@
 <?php
 declare(strict_types=1);
 
+use app\ApiDelete;
+use app\ApiGet;
+use app\ApiPatch;
+use app\ApiPost;
+use app\ApiPut;
 use DI\ContainerBuilder;
 use app\HelloWorld;
 use FastRoute\RouteCollector;
@@ -32,6 +37,11 @@ $container = $containerBuilder->build();
 
 $routes = simpleDispatcher(static function (RouteCollector $r) {
     $r->get('/', HelloWorld::class);
+    $r->post('/products', ApiPost::class);
+    $r->get('/products', ApiGet::class);
+    $r->put('/products', ApiPut::class);
+    $r->patch('/products', ApiPatch::class);
+    $r->delete('/products', ApiDelete::class);
 });
 
 $middlewareQueue[] = new FastRoute($routes);

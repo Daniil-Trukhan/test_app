@@ -18,5 +18,32 @@ services:
             - composer:/root/.composer/cache
         environment:
             PHP_IDE_CONFIG: "serverName=Docker"
+    db:
+        image: mysql:5.7
+        command: ["--explicit_defaults_for_timestamp"]
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            ALLOW_LOCAL_INFILE: 1
+        volumes:
+            - ./docker/mysql/:/var/lib/mysql
+    swagger-ui:
+        image: swaggerapi/swagger-ui
+        volumes:
+            - ./app:/var/www/app
+        environment:
+            URL: /var/www/app/swagger.yaml
+        ports:
+            - "8082:80"
+    myadmin:
+        image: phpmyadmin/phpmyadmin
+        links:
+            - db
+        ports:
+            - "8081:80"
+        volumes:
+            - ./app:/var/www/app
+            - ./docker/myadmin/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
 volumes:
     composer:
