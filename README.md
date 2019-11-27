@@ -6,15 +6,12 @@
 REQUIREMENTS
 ------------
 
-The minimum requirement by this project that your Web server supports PHP 7.3.0.
-
 Для товаров возможности следующие:
 
-1. GET /products/{id} — Получение информации о товаре
-2. POST /products — Добавление нового товара
-3. PUT /products/{id} — Редактирование товара
-4. PATCH /products/{id} — Редактирование некоторых параметров товара
-5. DELETE /products/{id} — Удаление товара
+1. GET /product/{id} — Получение информации о товаре
+2. POST /product — Добавление нового товара
+3. PUT /product/{id} — Редактирование товара
+4. DELETE /product/{id} — Удаление товара
 
 INSTALLATION
 ------------

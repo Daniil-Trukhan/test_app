@@ -20,10 +20,6 @@ class ApiPut extends Api
     public function __invoke(): ResponseInterface
     {
         $response = $this->response;
-        $response->getBody()
-            ->write(
-                json_encode(['status' => 'success', 'message' => 'PUT'], JSON_THROW_ON_ERROR, 512)
-            );
         return $response;
     }
 }

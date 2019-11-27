@@ -38,9 +38,9 @@ $container = $containerBuilder->build();
 $routes = simpleDispatcher(static function (RouteCollector $r) {
     $r->get('/', Main::class);
     $r->post('/product', ApiPost::class);
-    $r->get('/product', ApiGet::class);
-    $r->put('/product', ApiPut::class);
-    $r->delete('/product', ApiDelete::class);
+    $r->get('/product/{id:\d+}', ApiGet::class);
+    $r->put('/product/{id:\d+}', ApiPut::class);
+    $r->delete('/product/{id:\d+}', ApiDelete::class);
 });
 
 $middlewareQueue[] = new FastRoute($routes);
