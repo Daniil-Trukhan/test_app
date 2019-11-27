@@ -121,13 +121,10 @@
             "description": "Product was updated"
           },
           "400": {
-            "description": "Invalid ID supplied"
+            "description": "Invalid params supplied"
           },
           "404": {
             "description": "Product not found"
-          },
-          "405": {
-            "description": "Validation exception"
           }
         }
       }
@@ -159,7 +156,10 @@
         ],
         "responses": {
           "201": {
-            "description": "Product was created"
+            "description": "Product was created",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
           },
           "405": {
             "description": "Invalid input"
@@ -177,7 +177,8 @@
       "properties": {
         "id": {
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "example": 1
         },
         "name": {
           "type": "string",
@@ -186,7 +187,8 @@
         "price": {
           "type": "integer",
           "description": "Price",
-          "format": "int64"
+          "format": "int64",
+          "example": 110
         }
       },
       "xml": {
